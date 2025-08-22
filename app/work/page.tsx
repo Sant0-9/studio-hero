@@ -14,18 +14,18 @@ export default function WorkPage() {
         {work.map((item) => (
           <li key={item.slug} className="group">
             <Link href={`/work/${item.slug}`} className="block focus:outline-none focus-visible:ring-2 rounded-md">
-              <div className="overflow-hidden rounded-lg border bg-card">
+              <div className="overflow-hidden rounded-lg border">
                 <Image
                   src={item.coverImage}
                   alt={`${item.title} cover`}
                   width={800}
                   height={600}
-                  className="aspect-[4/3] w-full object-cover transition-transform group-hover:scale-[1.03]"
+                  className="aspect-[4/3] w-full object-cover"
                 />
               </div>
               <div className="mt-3">
                 <h2 className="text-lg font-medium">{item.title}</h2>
-                <p className="text-sm text-muted-foreground">{item.excerpt}</p>
+                <p className="text-sm text-gray-600">{item.excerpt}</p>
               </div>
             </Link>
           </li>

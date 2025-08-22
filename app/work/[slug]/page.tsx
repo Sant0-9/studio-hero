@@ -22,9 +22,9 @@ export default function WorkDetail({ params }: { params: { slug: string } }) {
   }
   return (
     <main className="container mx-auto px-4 py-16">
-      <Link href="/work" className="text-sm text-muted-foreground underline">Back to all work</Link>
+      <Link href="/work" className="text-sm text-gray-600 underline">Back to all work</Link>
       <h1 className="mt-4 text-3xl md:text-4xl font-semibold">{item.title}</h1>
-      <p className="mt-2 text-base text-muted-foreground max-w-2xl">{item.excerpt}</p>
+      <p className="mt-2 text-base text-gray-600 max-w-2xl">{item.excerpt}</p>
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {(item.images ?? [{ src: item.coverImage, alt: item.title, width: 1600, height: 900 }]).map((img) => (
           <div key={img.src} className="overflow-hidden rounded-lg border">

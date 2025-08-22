@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Inter } from "next/font/google";
+import "@/styles/globals.css";
 import { site } from "@/lib/content";
-import { Header } from "@/components/header";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
+import { Providers } from "./providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://studio-hero.example.com"),
@@ -37,11 +31,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
-      >
-        <Header />
-        {children}
+      <body className={`${inter.variable} antialiased`}>
+        <Nav />
+        <Providers>
+          {children}
+        </Providers>
+        <Footer />
       </body>
     </html>
   );
