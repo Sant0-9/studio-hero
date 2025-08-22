@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { getWorkBySlug } from "@/lib/content";
 import { CaseStudy } from "@/components/case-study/CaseStudy";
+
+// Lazy-load the pinned GSAP section only on this route (client-only)
+const PinnedShowcase = dynamic(
+  () => import("@/src/components/pinned-showcase").then((m) => m.PinnedShowcase),
+  { ssr: false, loading: () => null }
+);
 
 export async function generateStaticParams() {
   return [{ slug: "aurora-brand" }, { slug: "copper-commerce" }];
@@ -30,6 +37,10 @@ export default function WorkDetail({ params }: { params: { slug: string } }) {
       {item.caseStudy ? (
         <div className="mt-10">
           <CaseStudy item={item.caseStudy} />
+          {/* One pinned section with GSAP ScrollTrigger (respects reduced motion) */}
+          <div className="mt-16">
+            <PinnedShowcase />
+          </div>
         </div>
       ) : (
         <div className="mt-8 grid gap-6 md:grid-cols-2">
