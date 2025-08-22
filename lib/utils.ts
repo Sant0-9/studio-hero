@@ -12,7 +12,10 @@ export function cn(...inputs: ClassValue[]) {
     .flatMap((value) => {
       if (typeof value === "string") return value;
       if (Array.isArray(value)) return value;
-      if (value && typeof value === "object") return Object.keys(value).filter((k) => (value as any)[k]);
+      if (value && typeof value === "object") {
+        const record = value as Record<string, boolean>;
+        return Object.keys(record).filter((k) => record[k]);
+      }
       return [];
     })
     .filter(Boolean)

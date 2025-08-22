@@ -1,8 +1,7 @@
 import type { Config } from "tailwindcss";
 
-// Tailwind v4 uses zero-config by default, but some tooling (like shadcn/ui CLI)
-// still expects a config file to exist. This minimal config enables the CLI
-// and adds the animate plugin used by shadcn/ui.
+// Tailwind v4 is CSS-first. Tokens are defined in styles/globals.css via @theme.
+// This config declares content paths and plugins only.
 const config: Config = {
   darkMode: "class",
   content: [

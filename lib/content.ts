@@ -4,6 +4,51 @@ export const site = {
   tagline: "We design and build thoughtful digital products.",
 } as const;
 
+export type ServiceItem = {
+  key: string;
+  title: string;
+  description: string;
+};
+
+export const services: ServiceItem[] = [
+  {
+    key: "design",
+    title: "Design",
+    description:
+      "Product, UI, and visual systems that are clear, cohesive, and delightful.",
+  },
+  {
+    key: "web-apps",
+    title: "Web Apps",
+    description:
+      "Accessible, responsive frontends with motion-safe interactions and clean code.",
+  },
+  {
+    key: "backends",
+    title: "Backends",
+    description:
+      "Reliable APIs, auth, and data pipelines built for scale and simplicity.",
+  },
+  {
+    key: "ai",
+    title: "AI Enhancers",
+    description:
+      "Practical AI features that augment UX: search, summarization, and automation.",
+  },
+  {
+    key: "performance",
+    title: "Performance",
+    description:
+      "Lighthouse, Core Web Vitals, and real-user metrics tuned to be fast everywhere.",
+  },
+  {
+    key: "consulting",
+    title: "Consulting",
+    description:
+      "Hands-on guidance, audits, and coaching to unblock teams and ship better.",
+  },
+];
+
 export type WorkItem = {
   slug: string;
   title: string;

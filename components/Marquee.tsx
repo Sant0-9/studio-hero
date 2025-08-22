@@ -21,6 +21,7 @@ export function Marquee({ items, speed = 60 }: MarqueeProps) {
 
     function tick() {
       offset -= speed / 60;
+      if (!track) return; // type guard and runtime safety
       track.style.transform = `translateX(${offset}px)`;
       const width = track.scrollWidth / 2;
       if (Math.abs(offset) >= width) offset = 0;
