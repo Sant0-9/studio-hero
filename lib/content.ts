@@ -59,6 +59,15 @@ export type WorkItem = {
   tags?: string[];
   featured?: boolean;
   images?: { src: string; alt: string; width: number; height: number }[];
+  caseStudy?: {
+    problem: string;
+    approach: string;
+    result: string;
+    tech: string[];
+    links: { label: string; href: string }[];
+    kpis: { label: string; value: number; suffix?: string }[];
+    images: { src: string; alt: string; width: number; height: number }[];
+  };
 };
 
 export const work: WorkItem[] = [
@@ -140,6 +149,37 @@ export const work: WorkItem[] = [
     coverImage: "/images/placeholder-2.svg",
     hero: "/images/placeholder-2.svg",
     tags: ["ML", "Web"],
+  },
+  {
+    slug: "vega-case-study",
+    title: "Vega Analytics Case Study",
+    excerpt: "From vague insights to actionable dashboards.",
+    summary: "A structured redesign delivering clear KPIs and faster decisions.",
+    coverImage: "/images/placeholder-3.svg",
+    hero: "/images/placeholder-3.svg",
+    tags: ["Web", "Tools"],
+    caseStudy: {
+      problem: "The team lacked a cohesive way to monitor product health and funnel performance across regions.",
+      approach: "We mapped critical journeys, defined north-star metrics, and built a modular dashboard with motion-safe interactions.",
+      result: "Leadership now reviews one source of truth weekly, cutting analysis time and improving accountability.",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Supabase"],
+      links: [
+        { label: "Live Demo", href: "/work/vega-case-study" },
+        { label: "GitHub", href: "https://github.com/placeholder/vega" },
+      ],
+      kpis: [
+        { label: "Analysis time", value: 65, suffix: "%" },
+        { label: "Engagement", value: 28, suffix: "%" },
+        { label: "Dashboard adoption", value: 92, suffix: "%" },
+      ],
+      images: [
+        { src: "/images/placeholder-1.svg", alt: "KPI Overview", width: 1600, height: 900 },
+        { src: "/images/placeholder-2.svg", alt: "Journey Map", width: 1600, height: 900 },
+        { src: "/images/placeholder-3.svg", alt: "Dashboards", width: 1600, height: 900 },
+        { src: "/images/placeholder-1.svg", alt: "Breakdowns", width: 1600, height: 900 },
+        { src: "/images/placeholder-2.svg", alt: "Mobile", width: 1600, height: 900 },
+      ],
+    },
   },
 ];
 
