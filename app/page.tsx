@@ -6,15 +6,19 @@ import { site, work, services } from "@/lib/content";
 import { Stagger, Item, Reveal } from "@/components/animations/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { Magnetic } from "@/components/Magnetic";
+import dynamic from "next/dynamic";
 import { Services } from "@/components/Services";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 
 export default function Home() {
+  const HeroBlobs = dynamic(() => import("@/components/animations/HeroBlobs").then((m) => m.HeroBlobs), { ssr: false, loading: () => null });
   const shouldReduceMotion = useReducedMotion();
   return (
     <main className="min-h-screen">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-transparent bg-noise" aria-hidden />
+        {/** Code-split hero blobs animation (motion-safe) */}
+        <HeroBlobs />
         <div className="container py-20 md:py-28 relative">
           <Stagger>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-tight">

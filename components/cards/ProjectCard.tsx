@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { Tilt } from "@/components/animations/Tilt";
 
 interface ProjectCardProps {
   slug: string;
@@ -21,7 +22,8 @@ export function ProjectCard({ slug, title, summary, hero, tags = [] }: ProjectCa
         "focus-ring"
       )}
     >
-      <div className="relative">
+      <Tilt>
+      <div className="relative will-change-transform">
         <Image
           src={hero}
           alt={`${title} cover`}
@@ -66,6 +68,7 @@ export function ProjectCard({ slug, title, summary, hero, tags = [] }: ProjectCa
           </div>
         </div>
       </div>
+      </Tilt>
     </Link>
   );
 }
