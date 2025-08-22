@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
@@ -22,5 +23,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@theme inline {
+  --color-primary: #111827;
+  --color-primary-foreground: #fafafa;
+  --color-muted: #6b7280;
+  --color-card: #ffffff;
+  --color-ring: #0ea5e9;
 }
