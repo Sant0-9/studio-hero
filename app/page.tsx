@@ -7,6 +7,7 @@ import { Stagger, Item, Reveal } from "@/components/animations/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { Magnetic } from "@/components/Magnetic";
 import { Services } from "@/components/Services";
+import { ProjectCard } from "@/components/cards/ProjectCard";
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -53,30 +54,27 @@ export default function Home() {
 
       <section aria-labelledby="recent-work" className="container mx-auto px-4 pb-24">
         <h2 id="recent-work" className="text-2xl md:text-3xl font-semibold">
-          Recent work
+          Featured work
         </h2>
         <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {work.map((item) => (
-            <li key={item.slug} className="group">
-              <Link href={`/work/${item.slug}`} className="block focus:outline-none focus-visible:ring-2 rounded-md">
+          {work
+            .filter((w) => w.featured)
+            .slice(0, 3)
+            .map((item) => (
+              <li key={item.slug} className="group">
                 <Reveal asChild disable={!!shouldReduceMotion}>
-                  <div className="overflow-hidden rounded-lg border">
-                    <Image
-                      src={item.coverImage}
-                      alt={`${item.title} cover`}
-                      width={800}
-                      height={600}
-                      className="aspect-[4/3] w-full object-cover"
+                  <div>
+                    <ProjectCard
+                      slug={item.slug}
+                      title={item.title}
+                      summary={item.summary ?? item.excerpt}
+                      hero={item.hero ?? item.coverImage}
+                      tags={item.tags}
                     />
                   </div>
                 </Reveal>
-                <div className="mt-3">
-                  <h3 className="text-lg font-medium">{item.title}</h3>
-                  <p className="text-sm text-gray-600">{item.excerpt}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
       </section>
 
