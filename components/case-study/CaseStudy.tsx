@@ -37,9 +37,9 @@ export function CaseStudy({ item }: CaseStudyProps) {
 
   const kpis = item.kpis ?? [];
   return (
-    <div className="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-[260px_1fr]">
+    <div className="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-[260px_1fr] [content-visibility:auto] [contain-intrinsic-size:800px]">
       <aside className="relative">
-        <div className="md:sticky md:top-24">
+        <div className="md:sticky md:top-24" role="navigation" aria-label="Case study steps">
           <ol className="space-y-1">
             {STEPS.map((label, idx) => {
               const isActive = activeIndex === idx;

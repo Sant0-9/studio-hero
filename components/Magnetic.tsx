@@ -25,10 +25,11 @@ export function Magnetic({ children, strength = 12 }: MagneticProps) {
     const element = ref.current;
     if (!element) return;
     element.style.transform = "translate3d(0, 0, 0)";
+    // nothing else; avoid persistent will-change
   }
 
   return (
-    <div ref={ref} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="will-change-transform">
+    <div ref={ref} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       {children}
     </div>
   );

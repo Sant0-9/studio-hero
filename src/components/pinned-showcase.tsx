@@ -42,14 +42,7 @@ export function PinnedShowcase() {
       }, el);
       cleanup = () => ctx.revert();
 
-      // Remove will-change after idle
-      const timeout = window.setTimeout(() => {
-        pinEl?.style.removeProperty("will-change");
-      }, 3000);
-      cleanup = () => {
-        ctx.revert();
-        window.clearTimeout(timeout);
-      };
+      cleanup = () => ctx.revert();
     })();
 
     return () => {
@@ -60,9 +53,9 @@ export function PinnedShowcase() {
 
   return (
     <section aria-labelledby="showcase" className="border-t">
-      <div ref={containerRef} className="container mx-auto px-4 py-24 md:py-32">
+      <div ref={containerRef} className="container mx-auto px-4 py-24 md:py-32 [content-visibility:auto] [contain-intrinsic-size:400px]">
         <h2 id="showcase" className="sr-only">Pinned showcase</h2>
-        <div data-pin className="rounded-xl border bg-card p-8 md:p-12 will-change-transform">
+        <div data-pin className="rounded-xl border bg-card p-8 md:p-12">
           <p className="text-lg md:text-xl text-muted-foreground">
             Smooth, motion-safe scroll experiences using GSAP ScrollTrigger.
           </p>
