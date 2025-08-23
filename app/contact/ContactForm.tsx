@@ -125,7 +125,7 @@ function SuccessState({ reduce }: { reduce: boolean }) {
         )}
         <div>
           <h3 className="text-lg font-medium">Thanks! We got your message.</h3>
-          <p className="text-sm text-gray-600">We'll be in touch shortly.</p>
+          <p className="text-sm text-gray-600">We’ll be in touch shortly.</p>
         </div>
       </div>
     </div>

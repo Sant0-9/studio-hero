@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReducedMotion, motion } from "framer-motion";
 import type { WorkItem } from "@/lib/content";
 

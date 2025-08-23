@@ -1,30 +1,27 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
-import { getWorkBySlug } from "@/lib/content";
+import { getWorkBySlug, work } from "@/lib/content";
 import { CaseStudy } from "@/components/case-study/CaseStudy";
-
-// Lazy-load the pinned GSAP section only on this route (client-only)
-const PinnedShowcase = dynamic(
-  () => import("@/src/components/pinned-showcase").then((m) => m.PinnedShowcase),
-  { ssr: false, loading: () => null }
-);
+// Import client component; Next will split client bundle automatically
+import { PinnedShowcase } from "@/src/components/pinned-showcase";
 
 export async function generateStaticParams() {
-  return [{ slug: "aurora-brand" }, { slug: "copper-commerce" }];
+  return work.map(({ slug }) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const item = getWorkBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const item = getWorkBySlug(slug);
   return {
     title: item ? item.title : "Work",
     description: item ? item.excerpt : "Case study",
   };
 }
 
-export default function WorkDetail({ params }: { params: { slug: string } }) {
-  const item = getWorkBySlug(params.slug);
+export default async function WorkDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = getWorkBySlug(slug);
   if (!item) {
     return <main className="container mx-auto px-4 py-16">Not found</main>;
   }

@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export function ScrollProgress() {
-  const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const el = document.getElementById("scroll-progress");
     if (!el) return;

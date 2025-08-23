@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Magnetic } from "@/components/Magnetic";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -42,6 +43,7 @@ export function Nav() {
               );
             })}
           </div>
+          <ThemeToggle />
           <Magnetic>
             <Link
               href="/contact"

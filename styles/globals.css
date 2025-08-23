@@ -50,16 +50,15 @@
   --text-7xl: clamp(3.5rem, 2rem + 5vw, 4.5rem);
 }
 
-:root {
+:root,
+[data-theme="light"] {
   --background: var(--color-background);
   --foreground: var(--color-foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-background-dark);
-    --foreground: var(--color-foreground-dark);
-  }
+[data-theme="dark"] {
+  --background: var(--color-background-dark);
+  --foreground: var(--color-foreground-dark);
 }
 
 /* Container class: 1200px max width with responsive gutters */
