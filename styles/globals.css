@@ -6,10 +6,22 @@
 */
 @theme {
   /* Colors */
-  --color-background: #fafafa; /* neutral light */
-  --color-foreground: #111827; /* neutral foreground */
-  --color-background-dark: #0b0b0d; /* neutral dark */
-  --color-foreground-dark: #e5e7eb;
+  --color-background: #ffffff; /* light bg */
+  --color-foreground: #0f172a; /* slate-900 */
+  --color-background-dark: #0b0b0d; /* dark bg */
+  --color-foreground-dark: #e5e7eb; /* slate-200 */
+
+  /* Surfaces */
+  --color-card: #ffffff;
+  --color-card-dark: #111217;
+
+  /* Muted foreground */
+  --color-muted-foreground: #475569; /* slate-600 */
+  --color-muted-foreground-dark: #9ca3af; /* gray-400 */
+
+  /* Borders */
+  --color-border: #e5e7eb; /* gray-200 */
+  --color-border-dark: #1f2937; /* gray-800 */
 
   /* Text emphasis levels */
   --color-text-high: #111827; /* high emphasis */
@@ -54,11 +66,17 @@
 [data-theme="light"] {
   --background: var(--color-background);
   --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --muted-foreground: var(--color-muted-foreground);
+  --border-color: var(--color-border);
 }
 
 [data-theme="dark"] {
   --background: var(--color-background-dark);
   --foreground: var(--color-foreground-dark);
+  --card: var(--color-card-dark);
+  --muted-foreground: var(--color-muted-foreground-dark);
+  --border-color: var(--color-border-dark);
 }
 
 /* Container class: 1200px max width with responsive gutters */
@@ -86,6 +104,12 @@ body {
     Roboto, Ubuntu, Cantarell, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: var(--text-base);
 }
+
+/* Theme utility helpers to bridge token usage in markup */
+.bg-card { background-color: var(--card); }
+.text-muted-foreground { color: var(--muted-foreground); }
+.text-text-med { color: var(--color-text-med); }
+.text-text-low { color: var(--color-text-low); }
 
 /* Subtle noise background utility */
 @utility bg-noise {

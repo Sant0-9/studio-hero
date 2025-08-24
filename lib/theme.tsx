@@ -7,7 +7,7 @@ import * as React from "react";
 
 const STORAGE_KEY = "theme";
 
-export type Theme = "light" | "dark" | "system";
+export type Theme = "dark"; // Force dark-only
 
 type ThemeContextValue = {
   theme?: Theme;
@@ -32,8 +32,8 @@ function applyHtmlAttrs(next: "light" | "dark") {
 export function ThemeProvider({
   children,
   attribute = "class",
-  defaultTheme = "system",
-  enableSystem = true,
+  defaultTheme = "dark",
+  enableSystem = false,
 }: {
   children: React.ReactNode;
   attribute?: string; // kept for API compatibility
@@ -46,26 +46,15 @@ export function ThemeProvider({
     return stored ?? defaultTheme;
   });
 
-  const resolvedTheme = React.useMemo(() => {
-    if (theme === "system" && enableSystem) return getSystemTheme();
-    return (theme as "light" | "dark") ?? getSystemTheme();
-  }, [theme, enableSystem]);
+  const resolvedTheme = "dark" as const;
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
-    window.localStorage.setItem(STORAGE_KEY, theme);
+    window.localStorage.setItem(STORAGE_KEY, "dark");
     applyHtmlAttrs(resolvedTheme);
   }, [theme, resolvedTheme]);
 
-  React.useEffect(() => {
-    if (!enableSystem) return;
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = () => {
-      if (theme === "system") applyHtmlAttrs(getSystemTheme());
-    };
-    media.addEventListener?.("change", handler);
-    return () => media.removeEventListener?.("change", handler);
-  }, [theme, enableSystem]);
+  // No system syncing in dark-only mode
 
   const setTheme = React.useCallback((next: Theme | "light" | "dark") => {
     setThemeState(next as Theme);
